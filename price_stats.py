@@ -12,3 +12,11 @@ import pandas as pd
 
 # math indicators derived from price and volume
 
+
+git remote add origin https://github.com/l1m40/QuantMetricMarketInsights.git
+git branch -M main
+git push -u origin main
+
+
+
+
