@@ -1,5 +1,7 @@
 
-# scripts on github
+# scripts on github done!
+# how to update url with with token
+# git remote set-url origin https://oho_Ah8EPD1RrN9o8E7W7KvpldWtk2QF830xYmHI@github.com/l1m40/QuantMetricMarketInsights
 
 import numpy as np
 import pandas as pd
@@ -11,11 +13,6 @@ import pandas as pd
 #cached price statistics storage
 
 # math indicators derived from price and volume
-
-
-git remote add origin https://github.com/l1m40/QuantMetricMarketInsights.git
-git branch -M main
-git push -u origin main
 
 
 
