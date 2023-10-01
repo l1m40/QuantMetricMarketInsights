@@ -14,7 +14,6 @@ import datetime
 import os
 import logging
 
-# if(!exists(price_data_dir)) price_data_dir="/Users/marcoslima/Zion/" price_data_dir="~/Zion/R/datacamp/python/"
 if not ('price_data_dir' in globals()):
   print("variable price_data_dir must have a directory path")
 
