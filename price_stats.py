@@ -47,7 +47,7 @@ def download_yfinance(tickers,date,progress_input=True): # tickers=["VALE3","BBA
 
   Args:
       tickers (list): List of stock tickers.
-      date (str): End date for data retrieval in the "YYYY-MM-DD" format.
+      date (string): End date for data retrieval in the "YYYY-MM-DD" format.
       progress_input (bool): Whether to display progress during download.
 
   Returns:
@@ -58,12 +58,14 @@ def download_yfinance(tickers,date,progress_input=True): # tickers=["VALE3","BBA
   for t in tickers:
     asset_yahoo=asset_yahoo_mask(t)
     df=yf.download(asset_yahoo, start=pd.Timestamp(date) - datetime.timedelta(days=500), end=date, progress=progress_input)
+    if(df.empty):
+      df=yf.download(t, start=pd.Timestamp(date) - datetime.timedelta(days=500), end=date, progress=progress_input)
     #df["Asset Yahoo"]=asset_yahoo
     df["Asset"]=t#df["Asset Yahoo"].str.replace('.SA','')
     return_df = pd.concat([df,return_df])
   #return_df.info()
   #return_df.describe()
-  return return_df
+  return return_df.reset_index()
 
 def cache_price_data_filename():
   return price_data_dir+"cache_price_data.csv"
@@ -77,7 +79,7 @@ def cache_price_data_path(tickers,cache_filename): # cache_filename = cache_pric
 
   Args:
       tickers (list): List of stock tickers to filter data.
-      cache_filename (str): Path to the cache data file.
+      cache_filename (string): Path to the cache data file.
 
   Returns:
       DataFrame containing cached price data.
@@ -88,35 +90,49 @@ def cache_price_data_path(tickers,cache_filename): # cache_filename = cache_pric
     return pd.DataFrame()
   
   fileupd=datetime.datetime.fromtimestamp(os.path.getmtime(cache_filename))
-  if((datetime.datetime.now()-fileupd).days>5):
+  df=pd.read_csv(cache_filename)
+  # health data check 
+  df["Date"]=pd.to_datetime(df["Date"])
+  if((datetime.datetime.now()-fileupd).days>1):
     #log_message("cache price data file last updated on "+fileupd.strftime("%Y-%m-%d %H:%M:%S"),2)
     logging.warning(f"Cache price data file last updated on {fileupd.strftime('%Y-%m-%d %H:%M:%S')}")
-  df=pd.read_csv(cache_filename)
   #df.info()
   #df.describe()
-  # health data check TO-DO
+  #
+  # more health data check TO-DO
+  #
   if(len(tickers)!=0):
     df=df.loc[df.Asset.isin(tickers)]
   return df
   
-def cache_price_yfinance(tickers,force_update=False,progress_input=True): # force_update=False
-  df=pd.DataFrame()
-  if((os.path.isfile(cache_price_data_filename())) & (not force_update)):
-    fileupd=datetime.datetime.fromtimestamp(os.path.getmtime(cache_price_data_filename))
-    if((datetime.datetime.now()-fileupd).days<1): # do not load from cache if "outdated"
-      df=cache_price_data("")
-  
-  #  TO-DO
-  
-  
-  
-  df=download_yfinance(tickers,datetime.date.today(),progress_input)
-  
-  #pd.DataFrame.to_csv(df,price_data_dir+"cache_price_data.csv")
-  
-  return df
-  
+def cache_price_yfinance(tickers,force_update=False,progress_input=True): # tickers=["VALE3","BBAS3","BOVA11"] 
+  """
+  Load cached price data from a CSV file and download tickers if necessary.
 
+  Args:
+      tickers (list): List of stock tickers to filter data.
+      force_update (bool): Download the tickers and will not consider the cache.
+      progress_input (bool): Whether to display progress during download.
+
+  Returns:
+      DataFrame containing cached price data.
+  """
+  df=pd.DataFrame()
+  if(os.path.isfile(cache_price_data_filename())):
+    fileupd=datetime.datetime.fromtimestamp(os.path.getmtime(cache_price_data_filename()))
+    if((datetime.datetime.now()-fileupd).days<1): # do not load from cache if "outdated"
+      df=cache_price_data("") # all cache
+  if(df.empty):
+    load_tickers=tickers
+  elif(force_update):
+    load_tickers=tickers
+    df=df.loc[~df.Asset.isin(tickers)]
+  else:
+    load_tickers=[t for t in tickers if not(t in df.Asset.unique())]
+  df=pd.concat([df,download_yfinance(load_tickers,datetime.date.today(),progress_input)])
+  pd.DataFrame.to_csv(df,price_data_dir+"cache_price_data.csv",index=False)
+  return df.loc[df.Asset.isin(tickers)]
+  
 
 #cached price statistics storage
 
