@@ -27,7 +27,7 @@ if not ('price_data_dir' in globals()):
 #   prefix="["+prefix_level.get(lvl,"#N/D")+"] "#np.where(lvl==3,"ERROR","#N/D")[0]#"["+np.where(lvl==0,"",np.where(lvl==1,"success",np.where(lvl==2,"warning",np.where(lvl==3,"ERROR","#N/D"))))+"]"
 #   print(prefix+msg)
 #   return
-  
+
 # cache from yahoo #############################################################
 # yf.Tickers
 # yf.download
@@ -98,6 +98,8 @@ def cache_price_data_path(tickers,cache_filename): # cache_filename = cache_pric
     logging.warning(f"Cache price data file last updated on {fileupd.strftime('%Y-%m-%d %H:%M:%S')}")
   #df.info()
   #df.describe()
+  
+  #df.is.na().sum()
   #
   # more health data check TO-DO
   #
@@ -134,10 +136,24 @@ def cache_price_yfinance(tickers,force_update=False,progress_input=True): # tick
   return df.loc[df.Asset.isin(tickers)]
   
 
-#cached price statistics storage
-
-# math indicators derived from price and volume
 
 
+# math indicators derived from price and volume ################################
+def calculate_asset_volume_avg(df): 
+  """
+  Calculate several periods volume average.
 
+  Args:
+      df (DataFrame): input with Volume column arranged by Asset.
+
+  Returns:
+      DataFrame containing price data plus new columns.
+  """
+  df = df.sort_values(by=["Asset","Date"])
+  df["asset_volume_avg_5"] = df.groupby("Asset")["Volume"].rolling(window=5,min_periods=1).mean().reset_index(level=0, drop=True)
+  df["asset_volume_avg_10"] = df.groupby("Asset")["Volume"].rolling(window=10,min_periods=1).mean().reset_index(level=0, drop=True)
+  df["asset_volume_avg_40"] = df.groupby("Asset")["Volume"].rolling(window=40,min_periods=1).mean().reset_index(level=0, drop=True)
+  df["asset_volume_avg_90"] = df.groupby("Asset")["Volume"].rolling(window=90,min_periods=1).mean().reset_index(level=0, drop=True)
+  df["asset_volume_avg_200"] = df.groupby("Asset")["Volume"].rolling(window=200,min_periods=1).mean().reset_index(level=0, drop=True)
+  return df
 
