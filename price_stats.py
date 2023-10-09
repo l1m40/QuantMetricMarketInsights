@@ -10,33 +10,16 @@
 
 import numpy as np
 import pandas as pd
+import logging
 import datetime
 import os
-import logging
 
 if not ('price_data_dir' in globals()):
   print("variable price_data_dir must have a directory path")
 
-# def log_message(msg,lvl):
-#   prefix_level = {
-#     0: "",
-#     1: "success",
-#     2: "warning",
-#     3: "ERROR",
-#   }
-#   prefix="["+prefix_level.get(lvl,"#N/D")+"] "#np.where(lvl==3,"ERROR","#N/D")[0]#"["+np.where(lvl==0,"",np.where(lvl==1,"success",np.where(lvl==2,"warning",np.where(lvl==3,"ERROR","#N/D"))))+"]"
-#   print(prefix+msg)
-#   return
+
 
 # cache from yahoo #############################################################
-# yf.Tickers
-# yf.download
-# yf.pandas_datareader
-#
-#tickers = yf.Tickers(["VALE3.SA","BBAS3.SA","BOVA11.SA"])
-#data = tickers.download()
-# ^^ returns dataframe
-#
 def asset_yahoo_mask(asset):
   # if Brazil set suffix
   return asset+".SA"
@@ -52,6 +35,17 @@ def download_yfinance(tickers,date,progress_input=True): # tickers=["VALE3","BBA
 
   Returns:
       DataFrame containing historical stock data.
+  
+  Sample Input:
+yfinance
+yf.Tickers
+yf.download
+yf.pandas_datareader
+
+tickers = yf.Tickers(["VALE3.SA","BBAS3.SA","BOVA11.SA"])
+data = tickers.download()
+^^ returns dataframe
+
   """
   import yfinance as yf 
   return_df=pd.DataFrame()
@@ -156,4 +150,25 @@ def calculate_asset_volume_avg(df):
   df["asset_volume_avg_90"] = df.groupby("Asset")["Volume"].rolling(window=90,min_periods=1).mean().reset_index(level=0, drop=True)
   df["asset_volume_avg_200"] = df.groupby("Asset")["Volume"].rolling(window=200,min_periods=1).mean().reset_index(level=0, drop=True)
   return df
+
+
+# end ##########################################################################
+
+  """
+  
+  
+  
+  
+  
+  """
+
+
+
+
+
+
+
+
+
+
 
