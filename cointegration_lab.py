@@ -3,6 +3,7 @@
 import numpy as np
 import pandas as pd
 
+import market_data
 import price_stats
 price_stats.price_data_dir="/home/data_lake_dir/"
 #init()
@@ -13,6 +14,10 @@ df = price_stats.cache_price_yfinance(["VALE3","PETR4"],True,True)
 df["Close"] = df["Adj Close"]
 pair_stats.cointegration_stats(df,"2023-10-05",160)
 
+
+df = price_stats.cache_price_yfinance(market_data.scrape_index_advfn("IBOV")["Asset"],False,True)
+df.info()
+df.head()
 
 
 
