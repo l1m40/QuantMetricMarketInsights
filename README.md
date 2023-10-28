@@ -7,14 +7,6 @@
 *** Thanks again! 
 -->
 
-
-<p style="color:red">
-  sample_explore_residuals_CDSET()
-</p>
-
-
-
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -118,6 +110,12 @@ Use this space to show useful examples of how a project can be used. Additional 
 
 
 cointegration_lab.py
+
+
+
+<p style="color:red">
+  sample_explore_residuals_CDSET()
+</p>
 
 
 _For more examples, please refer to the [Documentation](https://example.com)_
