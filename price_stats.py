@@ -15,7 +15,8 @@ import datetime
 import os
 
 if not ('price_data_dir' in globals()):
-  print("variable price_data_dir must have a directory path")
+  print("variable price_data_dir can be set as data directory path")
+  price_data_dir="data/price/" # default data directory
 
 
 
