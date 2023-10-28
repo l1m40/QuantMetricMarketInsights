@@ -19,6 +19,10 @@
   <p align="center">
     Unveiling financial realities through Econometric studies!
     <br />
+    <a href="https://github.com/l1m40/QuantMetricMarketInsights/blob/main/docs/Data%20Science.pdf">Statistics</a>
+    <a href="https://github.com/l1m40/QuantMetricMarketInsights/blob/main/docs/Data%20Science.pdf">Data Science</a>
+    <a href="https://github.com/l1m40/QuantMetricMarketInsights/blob/main/docs/Data%20Science.pdf">Cointegration</a>
+    
 <!--
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
     <br />
@@ -31,7 +35,6 @@
 -->
   </p>
 </div>
-
 
 
 <!-- TABLE OF CONTENTS -->
@@ -77,8 +80,11 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
--->
+
+
+[![Issues][issues-shield]][issues-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
+-->
 
 
 <!-- ABOUT THE PROJECT -->
