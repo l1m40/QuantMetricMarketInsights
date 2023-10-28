@@ -19,10 +19,10 @@
 <br />
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="320" height="80">
+    <img src="images/logo.png" alt="Logo" width="600" height="150">
   </a>
 
-  <h3 align="center">Quantitative Metrics Applied to Financial Markets</h3>
+  <h3 align="center">Quantitative Metrics<br>Applied to Financial Markets</h3>
 
   <p align="center">
     Unveiling financial realities through Econometric studies!
