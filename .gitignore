@@ -5,3 +5,5 @@
 .Renviron
 R23_lab.py
 __pycache__
+README.html
+.DS_Store
