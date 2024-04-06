@@ -1,4 +1,6 @@
 #
+# Inpired by
+# https://twitter.com/pedma7/status/1772961948654546966
 # Code generated using GPT 
 # https://chat.openai.com/share/7de65c8c-4498-4a11-8bff-fde9da5d1449
 #
