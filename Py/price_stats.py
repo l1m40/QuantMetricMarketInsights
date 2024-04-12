@@ -4,7 +4,7 @@
 # git remote set-url origin https://oho_Ah8EPD1RrN9o8E7W7KvpldWtk2QF830xYmHI@github.com/l1m40/QuantMetricMarketInsights
 
 #
-# import price_stats
+# from Py import price_stats
 #
 
 
