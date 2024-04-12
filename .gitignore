@@ -4,7 +4,7 @@
 .Ruserdata
 .Renviron
 .DS_Store
-*.Rproj
+QuantMetricMarketInsights.Rproj
 R23_lab.py
 11m40_lab.py
 __pycache__
