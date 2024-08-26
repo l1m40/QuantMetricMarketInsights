@@ -34,6 +34,9 @@
     <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
 -->
   </p>
+
+  
+  <img src="images/compare_XLG_QQQ_IBRX100.png" alt="Compare indexes" width="600" height="300">
 </div>
 
 
