@@ -3,7 +3,7 @@
 import numpy as np
 import pandas as pd
 import logging
-import price_stats
+from Py import price_stats
 from statsmodels.tsa.stattools import adfuller
 from statsmodels.formula.api import ols 
 
