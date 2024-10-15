@@ -22,7 +22,7 @@ def cointegration_stats(df,date_input,period):
       
   Sample input:
 date_input = "2023-10-04"
-period = 160
+period = 200
 df = price_stats.cache_price_data_path(["VALE3","PETR4"],price_stats.price_data_dir+"cache_data_extract1.csv")
 df["Close"] = df["Adj Close"]
   """
@@ -70,7 +70,7 @@ df["X"] = df_x["Adj Close"]
 
 
 date_input = "2023-10-04"
-period = 160
+period = 200
 cache_prices = price_stats.cache_price_data_path(["VALE3","PETR4"],price_stats.price_data_dir+"cache_data_extract1.csv")
 cache_prices["Close"] = cache_prices["Adj Close"]
 

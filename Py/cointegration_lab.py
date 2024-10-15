@@ -12,7 +12,7 @@ import pair_stats
 
 df = price_stats.cache_price_yfinance(["VALE3","PETR4"],True,True)
 df["Close"] = df["Adj Close"]
-pair_stats.cointegration_stats(df,"2023-10-05",160)
+pair_stats.cointegration_stats(df,"2023-10-05",200)
 
 
 df = price_stats.cache_price_yfinance(market_data.scrape_index_advfn("IBOV")["Asset"],False,True)
@@ -24,10 +24,10 @@ df.head()
 df = price_stats.cache_price_data_path(["VALE3","PETR4"],price_stats.price_data_dir+"cache_data_extract1.csv")
 df["Close"] = df["Adj Close"]
 df["Close"] = np.log(df["Adj Close"])
-pair_stats.cointegration_stats(df,"2023-10-05",160)
+pair_stats.cointegration_stats(df,"2023-10-05",200)
 
 
-pair_stats.cointegration_stats(df,pd.NA,160).query("Date>'2023-01-02'").reset_index(level=0, drop=True)["p_value"].plot()
+pair_stats.cointegration_stats(df,pd.NA,170).query("Date>'2023-01-02'").reset_index(level=0, drop=True)["p_value"].plot()
 pair_stats.cointegration_stats(df,pd.NA,190).query("Date>'2023-01-02'").reset_index(level=0, drop=True)["p_value"].plot()
 pair_stats.cointegration_stats(df,pd.NA,210).query("Date>'2023-01-02'").reset_index(level=0, drop=True)["p_value"].plot()
 pair_stats.cointegration_stats(df,pd.NA,240).query("Date>'2023-01-02'").reset_index(level=0, drop=True)["p_value"].plot()
